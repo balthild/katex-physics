@@ -1,0 +1,17 @@
+{
+  "name": "katex-physics",
+  "version": "1.0.0",
+  "description": "TeX physics package port for KaTeX.",
+  "main": "src/main.js",
+  "repository": "https://github.com/balthild/katex-physics",
+  "author": "Balthild <ibalthild@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "NODE_ENV=development webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "NODE_ENV=development webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "production": "NODE_ENV=production webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "devDependencies": {
+    "laravel-mix": "^2.0.0"
+  }
+}
