@@ -43,7 +43,7 @@ export default {
 
         return expr.join(" ");
     },
-    "\\mdet": "\\left|\\begin{matrix}{#1}\\end{matrix}\\right|",
+    "\\mdet": "\\left|\\begin{matrix}#1\\end{matrix}\\right|",
     "\\dmat"(ctx) {
         const fill = getSqureParameter(ctx);
         const elements = popNextArg(ctx).split(",");
