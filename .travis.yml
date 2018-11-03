@@ -11,7 +11,7 @@ install:
   - yarn
 
 script:
-  - yarn build
+  - yarn run production
   - mkdir build
   - cp -rf dist build/
   - cp -f index.html build/
