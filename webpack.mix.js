@@ -7,5 +7,14 @@ mix.options({
     }
 });
 
+mix.webpackConfig({
+    output: {
+        library: 'main',
+        libraryExport: 'default',
+        libraryTarget: 'umd',
+        umdNamedDefine: true
+    }
+});
+
 mix.js('src/main.js', 'dist/');
 mix.disableNotifications();
