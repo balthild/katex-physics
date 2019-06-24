@@ -1,6 +1,6 @@
 {
   "name": "katex-physics",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "TeX physics package port for KaTeX.",
   "main": "dist/main.js",
   "repository": "https://github.com/balthild/katex-physics",
