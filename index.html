@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>physics macros for KaTeX</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js"></script>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+        #demo-input {
+            font-size: 14px;
+            width: 100vw;
+            height: 40vh;
+            font-family: monospace;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 8px;
+            border: none;
+            border-bottom: 1px solid #000;
+        }
+        #demo-output {
+            font-size: 16px;
+            width: 100vw;
+            height: 60vh;
+        }
+        .katex-display .newline {
+            margin-bottom: 1em;
+        }
+    </style>
+</head>
+<body>
+<textarea id="demo-input">
+\dd x \qc \dv{x} \qc \dv{f}{x} \qc
+\dv[n]{x} \qc \dv[n]{f}{x} \\
+
+\pd x\qc \pdv{x} \qc \pdv{f}{x} \qc
+\pdv[n]{x} \qc \pdv[n]{f}{x} \qc \pdv{f}{x}{y}{z} \\
+
+\qty[\qty(1-n)*\frac{1}{n}] \qc \qty{1+\frac{1}{n}} \qc \qty|1+\frac{1}{n}| \\
+
+\bra{a} \qc \ket{b} \qc \expval{x} \qc
+\braket{a}{b} \qc \ketbra{a}{b} \qc \matrixel{a}{b}{c} \\
+
+\mqty(a & b \\ c & d) \qc \mqty[a & b \\ c & d] \qc \mqty{a & b \\ c & d} \qc
+\mdet{a & b \\ c & d} \qc \mqty|a & b \\ c & d| \\
+
+\mqty[\dmat{a,b,\cdots}] \qc \mqty[\admat{a,b,\cdots}] \qc
+\mqty[\imat{2}] \qc \mqty[\xmat{x}{3}{2}] \qc
+</textarea>
+<div id="demo-output"></div>
+<script src="dist/main.js"></script>
+<script>
+
+    const demoInput = document.getElementById("demo-input");
+    const demoOutput = document.getElementById("demo-output");
+
+    function render(input, target) {
+        while(demoOutput.lastChild) {
+            demoOutput.removeChild(demoOutput.lastChild);
+        }
+
+        const block = document.createElement('div');
+        target.appendChild(block);
+
+        try {
+            katex.render(input, block, {
+                displayMode: true,
+                throwOnError: false,
+                macros: macros_physics,
+            });
+        } catch(e) {
+            console.error(e);
+            var msg = document.createTextNode(e.message);
+            block.appendChild(msg);
+        }
+    }
+
+    demoInput.value = localStorage.input || demoInput.value;
+    render(demoInput.value, demoOutput);
+
+    demoInput.addEventListener("input", function() {
+        localStorage.input = demoInput.value;
+        render(demoInput.value, demoOutput);
+    });
+</script>
+</body>
+</html>
